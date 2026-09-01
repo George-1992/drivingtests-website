@@ -1,6 +1,6 @@
 const DIRECTUS_URL = process.env.DIRECTUS_URL;
 const DIRECTUS_API_TOKEN = process.env.DIRECTUS_API_TOKEN;
-const NEXT_PUBLIC_DIRECTUS_TOKEN = process.env.NEXT_PUBLIC_DIRECTUS_TOKEN;
+const NEXT_PUBLIC_DIRECTUS_TOKEN = process.env.NEXT_PUBLIC_DIRECTUS_TOKEN || process.env.PUBLIC_DIRECTUS_TOKEN;
 
 export const directusRequest = async ({
     method = 'GET',
@@ -13,6 +13,7 @@ export const directusRequest = async ({
         warning: false,
         message: '',
         data: null,
+        meta: null,
     }
     const isPost = ['POST', 'PATCH', 'PUT'].includes(method.toUpperCase());
 
@@ -30,6 +31,7 @@ export const directusRequest = async ({
         resObj.message = 'Payload is required';
         return resObj;
     }
+
 
 
     try {
@@ -55,7 +57,9 @@ export const directusRequest = async ({
             queryString = '?' + searchParams.toString();
         }
 
-        const url = `${DIRECTUS_URL}${endpoint}${queryString}`;
+        const randomString = Math.random().toString(36).substring(2, 8);
+
+        const url = `${DIRECTUS_URL}${endpoint}${queryString}&random=${randomString}`;
         // console.log('url: ', url);
 
         const options = {
@@ -98,6 +102,7 @@ export const directusRequest = async ({
         resObj.success = response.ok;
         resObj.message = json.message || '';
         resObj.data = json.data || null;
+        resObj.meta = json.meta || null;
         return resObj;
 
     } catch (error) {
@@ -107,10 +112,22 @@ export const directusRequest = async ({
     }
 }
 
-export const getFileUrl = (fileId) => {
-    if (!fileId) return null;
-    return `${DIRECTUS_URL}/assets/${fileId}?access_token=${NEXT_PUBLIC_DIRECTUS_TOKEN}`;
-}
+export const getFileUrlDirectus = (fileId) => {
+
+    const isUrl = typeof fileId === 'string' && (fileId.startsWith('http://') || fileId.startsWith('https://'));
+    const isId = !isUrl && typeof fileId === 'string' && /^[a-zA-Z0-9_-]+$/.test(fileId);
+
+    if (isUrl && !fileId.includes(NEXT_PUBLIC_DIRECTUS_TOKEN)) {
+        // if its already a url but doesn't have the token, append it
+        return fileId + `?access_token=${NEXT_PUBLIC_DIRECTUS_TOKEN}`;
+    } else if (isId) {
+        // if its an id, construct the url
+        return `${DIRECTUS_URL}/assets/${fileId}?access_token=${NEXT_PUBLIC_DIRECTUS_TOKEN}`;
+    } else {
+        return fileId; // return as is (could be a url with token or some other string)
+    }
+
+};
 
 // example request
 // directusRequest({

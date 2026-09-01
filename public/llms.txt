@@ -1,0 +1,18 @@
+# Enspire Science
+
+> Enspire Science Ltd. provides professional consulting, proposal development, and training services for European research funding, specializing in Horizon Europe, ERC, MSCA, and EIC grants.
+
+This file serves as a directory of key resources, funding schemes, and knowledge base articles for AI crawlers, models, and agents.
+
+## Core Funding Schemes
+- [Horizon Europe Pillar 2](https://enspire.science/) - Collaborative projects between academia, industry, and other entities to address grand societal challenges.
+- [European Research Council (ERC)](https://enspire.science/) - Investigator-driven frontier research across academic disciplines based on scientific excellence.
+- [Marie Skłodowska-Curie Actions (MSCA)](https://enspire.science/) - Grants for all stages of researchers' careers, encouraging transnational and intersectoral mobility.
+- [European Innovation Council (EIC)](https://enspire.science/) - Support for top-class innovators, entrepreneurs, and small companies looking to scale up internationally.
+
+## Services & Resources
+- [Enspire Science News & Updates](https://enspire.science/enspire-science-news/) - Latest company newsletters, upcoming grant deadlines, and announcements.
+- [EU Grants Knowledge Base](https://enspire.science/) - Practical articles, strategic guides, and insights to assist throughout the grant writing and project management journey.
+
+## Optional
+- [About Enspire Science](https://enspire.science/) - Key figures, metrics, and methodology detailing their background consulting thousands of researchers.

@@ -20,7 +20,6 @@ export const isFilePath = (path) => {
         return rs;
     }
 };
-
 export const isAuthPath = (path) => {
     try {
         if (!path) {
@@ -43,9 +42,7 @@ export const isAuthPath = (path) => {
         console.log('isAuthPath error ==> ', error);
         return false;
     }
-}
-
-
+};
 export const makeFirstLetterUppercase = (str) => {
     try {
         if (!str || typeof str !== 'string') return str;
@@ -58,8 +55,7 @@ export const makeFirstLetterUppercase = (str) => {
         console.log('makeFirstLetterUppercase error ==> ', error);
         return str;
     }
-}
-
+};
 export const dashToKebab = (str) => {
     try {
         if (!str || typeof str !== 'string') return str;
@@ -68,8 +64,21 @@ export const dashToKebab = (str) => {
         console.log('dashToKebab error ==> ', error);
         return str;
     }
-}
-
+};
+export const strToKebab = (str) => {
+    try {
+        if (!str || typeof str !== 'string') return str;
+        return str
+            .trim()
+            .replace(/\s+/g, '-') // replace spaces with dashes
+            .replace(/([a-z])([A-Z])/g, '$1-$2') // insert dash between camelCase
+            .replace(/[-_]+/g, '-') // replace multiple dashes/underscores with single dash
+            .toLowerCase();
+    } catch (error) {
+        console.log('strToKebab error ==> ', error);
+        return str;
+    }
+};
 export const kebabToCamel = (str) => {
     // example: 'pre-qualified' => 'preQualified'
     try {
@@ -79,8 +88,7 @@ export const kebabToCamel = (str) => {
         console.log('kebabToCamel error ==> ', error);
         return str;
     }
-}
-
+};
 export const camelToDisplay = (str) => {
     // example: 'preQualified' => 'Pre Qualified'
     try {
@@ -90,8 +98,7 @@ export const camelToDisplay = (str) => {
         console.log('camelToDisplay error ==> ', error);
         return str;
     }
-}
-
+};
 export const toDisplayStr = (value) => {
     try {
         if (!value || typeof value !== 'string') return value;
@@ -122,8 +129,17 @@ export const toDisplayStr = (value) => {
         console.log('toDisplayString error ==> ', error);
         return value;
     }
-}
+};
+export const toDisplayNumber = (value) => {
+    try {
+        if (value === null || value === undefined || isNaN(value)) return value;
 
+        return new Intl.NumberFormat('en-US', { style: 'decimal' }).format(value);
+    } catch (error) {
+        console.log('toDisplayNum error ==> ', error);
+        return value;
+    }
+};
 export const getFirstLettersFromArray = (arr) => {
     try {
         if (!Array.isArray(arr) || arr.length === 0) return '';
@@ -137,8 +153,7 @@ export const getFirstLettersFromArray = (arr) => {
         console.log('getFirstLettersFromArray error ==> ', error);
         return '';
     }
-}
-
+};
 export const displayDate = (dateStr) => {
     // conver timestamp to Aug 23, 2023
     // conver ISO 8601 string to Aug 23, 2023
@@ -154,9 +169,7 @@ export const displayDate = (dateStr) => {
         console.log('displayDate error ==> ', error);
         return dateStr;
     }
-}
-
-
+};
 export const processEmailBody = ({ body, contact }) => {
     try {
         if (!body || typeof body !== 'string') return body || '';
@@ -170,8 +183,7 @@ export const processEmailBody = ({ body, contact }) => {
         console.error('Error processing email body:', error);
         return body;
     }
-}
-
+};
 export const toNumLocalString = (num) => {
     try {
         if (num === null || num === undefined || isNaN(num)) return num;
@@ -180,4 +192,23 @@ export const toNumLocalString = (num) => {
         console.log('toNumLocalString error ==> ', error);
         return num;
     }
-}
+};
+export const getPathname = (slugArr = []) => {
+    try {
+        let p = '';
+        if (!Array.isArray(slugArr) || slugArr.length === 0) return '/';
+        if (slugArr.length === 1) {
+            p = slugArr[0].trim();
+        } else {
+            p = slugArr.map(s => s.trim()).filter(s => s).join('/');
+        }
+
+        if (p === '/') {
+            p = 'home';
+        }
+        return p;
+    } catch (error) {
+        console.log('getPathname error ==> ', error);
+        return '/';
+    }
+};

@@ -1,0 +1,7 @@
+# 1. Allow Ahrefs to crawl everything
+User-agent: AhrefsBot
+Disallow:
+
+# 2. Block all other bots
+User-agent: *
+Disallow: /

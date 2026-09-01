@@ -1,0 +1,27 @@
+@keyframes wave {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-0.75rem);
+    }
+}
+
+.wave-letter {
+    display: inline-block;
+    transition: all 0.3s ease;
+    
+    @media (hover: hover) {
+        &:hover {
+            animation: wave 0.6s ease-in-out infinite;
+            animation-delay: var(--wave-delay, 0s);
+        }
+    }
+}
+
+/* For touch devices, add persistent wave trigger with a wrapper */
+.wave-text-group:hover .wave-letter,
+.wave-text-group:focus-within .wave-letter {
+    animation: wave 0.6s ease-in-out infinite;
+    animation-delay: var(--wave-delay, 0s);
+}
