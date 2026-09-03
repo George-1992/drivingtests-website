@@ -90,12 +90,14 @@ export const directusRequest = async ({
         }
 
         const response = await fetch(url, options);
-        const contentType = response.headers.get('content-type') || 'unknown';
         const rawText = await response.text();
 
         if (!response.ok) {
-            const bodyPreview = rawText.slice(0, 300).replace(/\s+/g, ' ').trim();
-            resObj.message = `Failed to parse JSON response. Status: ${response.status}. Content-Type: ${contentType}. URL: ${url}. Preview: ${bodyPreview}`;
+            resObj.success = false;
+            resObj.message = `Directus request failed:  ${JSON.stringify(response)}`;
+            resObj.data = {
+                response
+            }
             return resObj;
         }
 
@@ -104,15 +106,11 @@ export const directusRequest = async ({
             json = JSON.parse(rawText);
         } catch (error) {
             resObj.success = false;
-            resObj.message = `Failed to parse JSON response. Status: ${response.status}. Content-Type: ${contentType}. URL: ${url}. Preview: ${rawText.slice(0, 300).replace(/\s+/g, ' ').trim()}`;
+            resObj.message = `Failed to parse JSON response. Status: ${response.status}.`;
             resObj.data = {
-                rawText,
-                contentType,
-                status: response.status,
-                url,
+                response,
             }
             return resObj;
-
         }
 
         // console.log('json ==> ', json);
