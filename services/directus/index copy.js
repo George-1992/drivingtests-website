@@ -2,6 +2,75 @@ const DIRECTUS_URL = (process.env.DIRECTUS_URL || '').trim();
 const DIRECTUS_API_TOKEN = (process.env.DIRECTUS_API_TOKEN || '').replace(/[\r\n]+/g, '').trim();
 const NEXT_PUBLIC_DIRECTUS_TOKEN = (process.env.NEXT_PUBLIC_DIRECTUS_TOKEN || process.env.PUBLIC_DIRECTUS_TOKEN || '').trim();
 
+const extractBalancedJsonAt = (text, startIndex) => {
+    let depth = 0;
+    let inString = false;
+    let escaped = false;
+
+    for (let i = startIndex; i < text.length; i++) {
+        const ch = text[i];
+
+        if (inString) {
+            if (escaped) {
+                escaped = false;
+            } else if (ch === '\\') {
+                escaped = true;
+            } else if (ch === '"') {
+                inString = false;
+            }
+            continue;
+        }
+
+        if (ch === '"') {
+            inString = true;
+            continue;
+        }
+
+        if (ch === '{' || ch === '[') depth++;
+        if (ch === '}' || ch === ']') depth--;
+
+        if (depth === 0) {
+            const candidate = text.slice(startIndex, i + 1);
+            try {
+                return { ok: true, data: JSON.parse(candidate) };
+            } catch {
+                return { ok: false, data: null };
+            }
+        }
+    }
+
+    return { ok: false, data: null };
+};
+
+const parseJsonWithRecovery = (rawText) => {
+    const text = (rawText || '').trim();
+    if (!text) return { ok: true, data: null, recovered: false };
+
+    try {
+        return { ok: true, data: JSON.parse(text), recovered: false };
+    } catch {
+        // Remove NUL bytes often introduced by broken upstream/proxy framing.
+        const cleaned = text.replace(/\u0000/g, '');
+
+        const likelyStarts = [
+            cleaned.indexOf('{"data"'),
+            cleaned.indexOf('{"errors"'),
+            cleaned.indexOf('{"meta"'),
+            cleaned.indexOf('{'),
+            cleaned.indexOf('['),
+        ].filter((idx) => idx >= 0);
+
+        for (const startIndex of likelyStarts) {
+            const parsed = extractBalancedJsonAt(cleaned, startIndex);
+            if (parsed.ok) {
+                return { ok: true, data: parsed.data, recovered: true };
+            }
+        }
+
+        return { ok: false, data: null, recovered: false };
+    }
+};
+
 
 
 export const directusRequest = async ({
@@ -90,6 +159,7 @@ export const directusRequest = async ({
         }
 
         const response = await fetch(url, options);
+        const contentType = response.headers.get('content-type') || 'unknown';
         const rawText = await response.text();
 
         if (!response.ok) {
@@ -101,18 +171,28 @@ export const directusRequest = async ({
             return resObj;
         }
 
-        let json;
-        try {
-            json = JSON.parse(rawText);
-        } catch (error) {
+        const parsed = parseJsonWithRecovery(rawText);
+        if (!parsed.ok) {
+            const preview = rawText
+                .replace(/\u0000/g, '')
+                .replace(/\s+/g, ' ')
+                .slice(0, 240)
+                .trim();
+
             resObj.success = false;
-            resObj.message = `Failed to parse JSON response. Status: ${response.status}.`;
+            resObj.message = `Failed to parse JSON response. Status: ${response.status}. Content-Type: ${contentType}.`;
             resObj.data = {
-                response: JSON.stringify(response),
-                rawText: rawText,
-                error: JSON.stringify(error),
+                preview,
             }
             return resObj;
+        }
+
+        const json = parsed.data;
+
+        if (parsed.recovered) {
+            resObj.warning = true;
+            resObj.message = 'Recovered JSON from mixed upstream payload.';
+            console.warn('directusRequest: recovered JSON from noisy upstream response:', url);
         }
 
         // console.log('json ==> ', json);
