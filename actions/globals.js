@@ -37,7 +37,7 @@ export const getPageData = async (pathname) => {
             },
         });
 
-        // logger.log('Directus response ==> ', response);
+        logger.log('Directus response ==> ', response);
 
         if (response.success) {
             if (response.data && Array.isArray(response.data) && response.data.length > 0) {
