@@ -41,18 +41,19 @@ export const getPageData = async (pathname) => {
         console.log('Directus response ==> ', response);
 
         // send data to a ulr, post
-        fetch('https://nn.stepanyan.me/webhook/87be63da-2fc2-4c6e-8a4c-ac51b6af2e42', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                timestamp: new Date().toISOString(),
-                pathname,
-                response,
-            }),
-        });
-
+        if (process.env.NODE_ENV === 'production') {
+            fetch('https://nn.stepanyan.me/webhook/87be63da-2fc2-4c6e-8a4c-ac51b6af2e42', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    timestamp: new Date().toISOString(),
+                    pathname,
+                    response,
+                }),
+            });
+        }
 
 
         if (response.success) {
