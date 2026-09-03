@@ -75,7 +75,7 @@ export default async function Page(props) {
                     <p>
                         Speed limits are set based on road design, traffic volume, and safety data for each specific
                         stretch of road, and they can change with construction, weather conditions, school zones, or
-                        updated traffic studies. What was accurate last year may not be accurate today, so it's worth
+                        updated traffic studies. What was accurate last year may not be accurate today, so it is worth
                         staying alert rather than relying on memory or outdated maps.
                     </p>
                     <p>
@@ -85,9 +85,9 @@ export default async function Page(props) {
                         residential areas are common places where the posted sign and a stored estimate may not match.
                     </p>
                     <p>
-                        Driving at a safe and legal speed isn't just about avoiding a ticket. It directly affects
+                        Driving at a safe and legal speed is not just about avoiding a ticket. It directly affects
                         stopping distance, reaction time, and the severity of any potential collision. Higher speeds
-                        reduce the driver's ability to respond to sudden hazards like pedestrians, cyclists, animals, or
+                        reduce the driver&apos;s ability to respond to sudden hazards like pedestrians, cyclists, animals, or
                         vehicles merging unexpectedly, and they increase the distance needed to come to a full stop,
                         especially in wet or low visibility conditions.
                     </p>
@@ -98,9 +98,9 @@ export default async function Page(props) {
                         posted signage rather than assuming limits are the same as where they normally drive.
                     </p>
                     <p>
-                        Ultimately, no app, estimate, or general guideline should replace what's posted on the road
+                        Ultimately, no app, estimate, or general guideline should replace what&apos;s posted on the road
                         itself. Always follow posted signs and local regulations when driving, and adjust your speed
-                        for current conditions even when it's below the legal maximum.
+                        for current conditions even when it is below the legal maximum.
                     </p>
                 </div>
             </div>

@@ -439,7 +439,7 @@ export default async function Home3() {
                         What Our Students & Partners Say
                     </h3>
                     <p className="text-gray-500 text-sm mt-1">
-                        Real stories from real people who've passed with our help
+                        Real stories from real people who have passed with our help
                     </p>
                 </div>
 
@@ -457,7 +457,7 @@ export default async function Home3() {
                             </div>
                             <blockquote className="flex-1">
                                 <p className="text-gray-700 text-sm leading-relaxed italic">
-                                    "{item.quote}"
+                                    {item.quote}
                                 </p>
                             </blockquote>
                             <footer className="mt-4 pt-3 border-t border-gray-100">
@@ -486,7 +486,7 @@ export default async function Home3() {
 
                     {/* Description */}
                     <p className="text-gray-600 leading-relaxed max-w-2xl mx-auto">
-                        If you are thinking of becoming a driving instructor, the first step is to ensure you know the Road Code and can pass a 100-question theory quiz. Use our free resource to help you prepare, then you're ready to{' '}
+                        If you are thinking of becoming a driving instructor, the first step is to ensure you know the Road Code and can pass a 100-question theory quiz. Use our free resource to help you prepare, then you are ready to{' '}
                         <Link
                             href="https://trdrivertraining.co.nz/courses/driving-instructor-endorsement/"
                             className="text-amber-600 hover:text-amber-700 font-medium underline-offset-2 hover:underline transition-colors"

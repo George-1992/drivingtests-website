@@ -238,7 +238,7 @@ export default function Home2() {
                                     <div className="w-4 h-4 bg-yellow-500/50 rounded-full animate-pulse">
                                     </div>
                                     <p className="max-w-lg text-xs sm:text-sm uppercase tracking-[0.24em] text-emerald-700">
-                                        There's no one-size-fits-all route through EU funding, but we can help you find yours.
+                                        There is no one-size-fits-all route through EU funding, but we can help you find yours.
                                     </p>
 
                                     <div className="w-8/12 sm:w-96 border-t border-gray-600/50 animate-pulse">
@@ -450,7 +450,7 @@ export default function Home2() {
                             },
                         ].map((t) => (
                             <div key={t.name} className="flex flex-col gap-4 p-6 rounded-2xl bg-white border border-gray-100 shadow-sm">
-                                <p className="text-sm text-gray-600 leading-relaxed italic">"{t.quote}"</p>
+                                <p className="text-sm text-gray-600 leading-relaxed italic">{t.quote}</p>
                                 <div className="mt-auto flex flex-col gap-0.5 pt-3 border-t border-gray-100">
                                     <span className="text-xs font-semibold text-gray-800">{t.name}</span>
                                     <span className="text-xs text-gray-400">{t.org}</span>

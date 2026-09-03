@@ -64,10 +64,10 @@ export default async function Page(props) {
             {query && !items.length && (
                 <div className="max-w-4xl mx-auto text-center py-10 opacity-70">
                     <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 leading-tight">
-                        No results found for <span className="text-amber-600">"{query}"</span>
+                        No results found for <span className="text-amber-600 italic">{query}</span>
                     </h3>
                     <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-                        We couldn't find any speed limit entries matching your search. Please try a different term or check back later.
+                        We could not find any speed limit entries matching your search. Please try a different term or check back later.
                     </p>
                 </div>
             )}
