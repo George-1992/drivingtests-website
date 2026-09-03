@@ -1,5 +1,3 @@
-# Enspire Website
-
 CMS-driven Next.js website backed by Directus.
 
 ## Start Here

@@ -15,6 +15,26 @@ export default async function Blog({ searchParams = {} }) {
     let postsCategories = null;
     let postIds = null;
 
+    // console.log('searchParams: ', searchParams);
+    // console.log('categoryFilter: ', categoryFilter);
+
+    // all capital letters, 
+    // only first letter capitalized, 
+    // all lowercase, 
+    // all lowercase with dashes, 
+    // all lowercase with underscores, 
+    // all lowercase with spaces, 
+
+    const searchVersions = ((str) => {
+        if (!str) return [];
+        const lower = str.toLowerCase();
+        const capitalized = str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+        const upper = str.toUpperCase();
+        const dashed = lower.replace(/\s+/g, '-');
+        const underscored = lower.replace(/\s+/g, '_');
+        return [lower, capitalized, upper, dashed, underscored];
+    })(categoryFilter);
+
     if (categoryFilter) {
         //if category defined first fetch category id from directus
         const categoryResult = await directusRequest({
@@ -24,11 +44,12 @@ export default async function Blog({ searchParams = {} }) {
                 fields: 'id,name',
                 filter: {
                     name: {
-                        _eq: categoryFilter,
+                        _in: searchVersions,
                     },
                 },
             },
         });
+
 
         if (Array.isArray(categoryResult.data) && categoryResult.data.length > 0) {
             categoryIds = categoryResult

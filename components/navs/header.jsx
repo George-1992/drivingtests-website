@@ -4,7 +4,7 @@ import Image from "next/image";
 import cn from 'clsx';
 import Link from "next/link";
 import { ChevronDown, Menu, X, SearchIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { isValidElement, useEffect, useState } from "react";
 import { logger } from "@/utils/logger";
 
 
@@ -67,6 +67,9 @@ export default function Header({
                                 height={80}
                                 className="h-full w-auto object-contain"
                             />
+                            <p className="px-2 text-xl flex-shrink-0 text-gray-900 font-bold font-mono">
+                                Dttraining
+                            </p>
                         </div>
                     </Link>
 
@@ -74,40 +77,56 @@ export default function Header({
                     <div className="hidden lg:flex gap-3 items-center ">
 
                         {
-                            menuItems.map((item, index) => (
-                                item?.items?.length ? (
-                                    <div
-                                        key={index}
-                                        className="group relative flex items-center after:absolute after:left-0 after:top-full after:h-3 after:w-full after:content-['']"
-                                    >
-                                        <Link
-                                            href={item.href || '#'}
-                                            arial-label={item.name}
-                                            className={cn(
-                                                'inline-flex items-center gap-1 rounded-full px-3 py-2 transition-colors hover:bg-slate-50/20 [text-shadow:_0_0.5px_5px_white,_0_0_3px_white]',
-                                                item.className || ''
-                                            )}
-                                        >
-                                            {item.name}
-                                            <ChevronDown className="size-4 transition duration-200 group-hover:rotate-180 [text-shadow:_0_0.5px_5px_white,_0_0_3px_white]" />
-                                        </Link>
+                            menuItems.map((item, index) => {
+                                if (item?.component) {
+                                    const componentNode = typeof item.component === 'function'
+                                        ? item.component(item.props || {})
+                                        : item.component;
 
-                                        <div className="pointer-events-none invisible absolute left-0 top-full z-50 min-w-56 translate-y-1 rounded-2xl border border-slate-200 bg-white p-2 opacity-0 shadow-xl transition duration-200 group-hover:pointer-events-auto group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-                                            {item.items.map((subItem, subIndex) => (
-                                                <Link
-                                                    key={`${index}-${subIndex}`}
-                                                    href={subItem.href}
-                                                    arial-label={subItem.name}
-                                                    className="block rounded-xl px-4 py-3 text-sm text-slate-700 transition hover:bg-slate-100 hover:text-emerald-700 "
-                                                >
-                                                    {subItem.name}
-                                                </Link>
-                                            ))}
+                                    return (
+                                        <div key={item?.key || index} className="flex items-center">
+                                            {isValidElement(componentNode) ? componentNode : (componentNode ?? null)}
                                         </div>
-                                    </div>
-                                ) : (
+                                    );
+                                }
+
+                                if (item?.items?.length) {
+                                    return (
+                                        <div
+                                            key={item?.key || index}
+                                            className="group relative flex items-center after:absolute after:left-0 after:top-full after:h-3 after:w-full after:content-['']"
+                                        >
+                                            <Link
+                                                href={item.href || '#'}
+                                                arial-label={item.name}
+                                                className={cn(
+                                                    'inline-flex items-center gap-1 rounded-full px-3 py-2 transition-colors hover:bg-slate-50/20 [text-shadow:_0_0.5px_5px_white,_0_0_3px_white]',
+                                                    item.className || ''
+                                                )}
+                                            >
+                                                {item.name}
+                                                <ChevronDown className="size-4 transition duration-200 group-hover:rotate-180 [text-shadow:_0_0.5px_5px_white,_0_0_3px_white]" />
+                                            </Link>
+
+                                            <div className="pointer-events-none invisible absolute left-0 top-full z-50 min-w-56 translate-y-1 rounded-2xl border border-slate-200 bg-white p-2 opacity-0 shadow-xl transition duration-200 group-hover:pointer-events-auto group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                                                {item.items.map((subItem, subIndex) => (
+                                                    <Link
+                                                        key={`${index}-${subIndex}`}
+                                                        href={subItem.href}
+                                                        arial-label={subItem.name}
+                                                        className="block rounded-xl px-4 py-3 text-sm text-slate-700 transition hover:bg-slate-100 hover:text-emerald-700 "
+                                                    >
+                                                        {subItem.name}
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    );
+                                }
+
+                                return (
                                     <Link
-                                        key={index}
+                                        key={item?.key || index}
                                         href={item.href}
                                         arial-label={item.name}
                                         className={cn(
@@ -117,8 +136,8 @@ export default function Header({
                                     >
                                         {item.name}
                                     </Link>
-                                )
-                            ))
+                                );
+                            })
                         }
                     </div>
 
@@ -141,9 +160,20 @@ export default function Header({
                     'rounded-2xl p-4 flex flex-col gap-2'
                 )}>
                     {menuItems.map((item, index) => {
+                        if (item?.component) {
+                            const componentNode = typeof item.component === 'function'
+                                ? item.component(item.props || {})
+                                : item.component;
+
+                            return (
+                                <div key={item?.key || index} className="rounded-xl border border-slate-200 bg-white p-2">
+                                    {isValidElement(componentNode) ? componentNode : (componentNode ?? null)}
+                                </div>
+                            );
+                        }
 
                         return (
-                            <div key={index} className="rounded-xl border border-slate-200 bg-white p-2">
+                            <div key={item?.key || index} className="rounded-xl border border-slate-200 bg-white p-2">
                                 <Link
                                     href={item.href || '#'}
                                     aria-label={item.name}
@@ -168,7 +198,7 @@ export default function Header({
                                     </div>
                                 ) : null}
                             </div>
-                        )
+                        );
                     })}
                 </div>
             )}

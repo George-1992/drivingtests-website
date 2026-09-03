@@ -1,18 +1,33 @@
-# Enspire Science
+# DT Vehicle & Workplace Training
 
-> Enspire Science Ltd. provides professional consulting, proposal development, and training services for European research funding, specializing in Horizon Europe, ERC, MSCA, and EIC grants.
+> New Zealand provider of online and blended training for vehicle operation, machinery operation and workplace health and safety.
+> Over 50 courses covering forklift, crane, EWP, hazardous goods, driving, heavy vehicle and general safety, delivered online.
+> Blended courses with practical assessment delivered through TR Driver Training's 10 branches.
+> Free learner licence and road code practice resources.
 
-This file serves as a directory of key resources, funding schemes, and knowledge base articles for AI crawlers, models, and agents.
+DT Vehicle & Workplace Training runs dttraining.co.nz and is part of TR Group. Training records sit in DT's own learning management system, relied on by more than 3,000 New Zealand companies. Content is authored and reviewed by Darren Cottingham and a team of trainers.
 
-## Core Funding Schemes
-- [Horizon Europe Pillar 2](https://enspire.science/) - Collaborative projects between academia, industry, and other entities to address grand societal challenges.
-- [European Research Council (ERC)](https://enspire.science/) - Investigator-driven frontier research across academic disciplines based on scientific excellence.
-- [Marie Skłodowska-Curie Actions (MSCA)](https://enspire.science/) - Grants for all stages of researchers' careers, encouraging transnational and intersectoral mobility.
-- [European Innovation Council (EIC)](https://enspire.science/) - Support for top-class innovators, entrepreneurs, and small companies looking to scale up internationally.
+## Compliance guidance
 
-## Services & Resources
-- [Enspire Science News & Updates](https://enspire.science/enspire-science-news/) - Latest company newsletters, upcoming grant deadlines, and announcements.
-- [EU Grants Knowledge Base](https://enspire.science/) - Practical articles, strategic guides, and insights to assist throughout the grant writing and project management journey.
+- [Forklift training and certification requirements](https://dttraining.co.nz/resources/forklift/): An overview of New Zealand's legal requirements for forklift operators, covering the operator's certificate, F endorsement, unit standards and refresher intervals.
+- [Crane and lifting training requirements](https://dttraining.co.nz/resources/crane/): Legal requirements for truck loader crane, gantry crane, sideloader and slinging work.
+- [EWP and working at height requirements](https://dttraining.co.nz/resources/ewp/): Legal requirements for scissor lifts, boom lifts and other elevating work platforms.
+- [Dangerous goods and hazardous chemicals transport and handling](https://dttraining.co.nz/resources/dangerous-goods/): Rules governing the shipping, packing, handling and disposal of hazardous goods.
 
-## Optional
-- [About Enspire Science](https://enspire.science/) - Key figures, metrics, and methodology detailing their background consulting thousands of researchers.
+## Course catalogue
+
+- [All courses](https://dttraining.co.nz/courses/): The complete range of online and blended training courses.
+- [Forklift and materials handling courses](https://dttraining.co.nz/courses/forklift): Forklift-focused courses covering the operator's certificate, F endorsement, walkie stacker and attachments.
+- [Truck driver courses](https://dttraining.co.nz/courses/truck-drivers): Courses for truck drivers, including endorsements, load security and fatigue management.
+- [Construction and site safety courses](https://dttraining.co.nz/courses/construction-courses): Courses aimed at construction machinery operators and related site workers.
+- [EWP and heights courses](https://dttraining.co.nz/courses/ewp): Courses for anyone operating equipment at height or working where a fall risk exists.
+- [Crane courses](https://dttraining.co.nz/courses/cranes): Courses covering slinging and the operation of various crane types.
+
+## Learner licence resources
+
+- [Class 1 road code practice tests](https://dttraining.co.nz/roadcode/car/): Free practice questions for the class 1 car licence.
+- [Class 2-5 road code practice tests](https://dttraining.co.nz/roadcode/heavy_vehicle/): Free practice questions for class 2 and 5 heavy vehicle licences.
+
+## About
+
+- [About DT Vehicle & Workplace Training](https://dttraining.co.nz/about/)

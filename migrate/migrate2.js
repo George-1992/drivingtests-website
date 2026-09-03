@@ -13,7 +13,7 @@ const normalizePath = (urlOrPath = '') => {
     if (!urlOrPath) return '';
 
     try {
-        const url = new URL(urlOrPath, 'https://enspire.science');
+        const url = new URL(urlOrPath, 'https://company.science');
         return url.pathname.replace(/\/+$/, '').toLowerCase();
     } catch {
         return String(urlOrPath).replace(/\/+$/, '').toLowerCase();
@@ -179,7 +179,7 @@ const test = async () => {
 
     try {
         // wordpress
-        const url = `https://enspire.science/wp-json/wp/v2/pages?per_page=5&slug=${slug}`;
+        const url = `https://company.science/wp-json/wp/v2/pages?per_page=5&slug=${slug}`;
         const wpResponse = await fetch(url, {
             method: 'GET',
             headers: {
@@ -285,8 +285,8 @@ const test = async () => {
                     //     make sure to create the card, and dont leave duplicated images or opther card elemetns, if included in the component then no need to repeat them in the rest of the content,
                     //     find the rest yourself and when component is create dont include duplicated content.
                     //     Also if card has learn more then just add to the card description and no need for read more.
-                    //     Replace anything href src https://tools.enspire.science and https://enspire.science with empty links in href's so the links are relative,
-                    //     For example https://tools.enspire.science/contact- m-for-groups/?course=HE_Implementation should become /contact-m-for-groups/?course=HE_Implementation
+                    //     Replace anything href src https://tools.company.science and https://company.science with empty links in href's so the links are relative,
+                    //     For example https://tools.company.science/contact- m-for-groups/?course=HE_Implementation should become /contact-m-for-groups/?course=HE_Implementation
                     //     `
                     // },
                     // {
@@ -604,11 +604,11 @@ const updateLinksInHtml = async (slug) => {
             let updatedHtmlString = postData.content || '';
             let replacedCount = 0;
 
-            const hrefAttrRegex = /href\s*=\s*(['"])(https:\/\/(?:tools\.)?enspire\.science[^'"]*)\1/g;
+            const hrefAttrRegex = /href\s*=\s*(['"])(https:\/\/(?:tools\.)?company\.science[^'"]*)\1/g;
 
             updatedHtmlString = updatedHtmlString.replace(hrefAttrRegex, (match, quote, rawHref) => {
                 replacedCount++;
-                const relativeLink = rawHref.replace(/^https:\/\/(?:tools\.)?enspire\.science/, '');
+                const relativeLink = rawHref.replace(/^https:\/\/(?:tools\.)?company\.science/, '');
                 return `href=${quote}${relativeLink}${quote}`;
             });
 
@@ -641,7 +641,7 @@ const updateLinksInHtml = async (slug) => {
 const getAllWordpressPages = async ({ type = 'pages' }) => {
 
     try {
-        const baseUrl = `https://enspire.science/wp-json/wp/v2/${type}`;
+        const baseUrl = `https://company.science/wp-json/wp/v2/${type}`;
         const headers = {
             'Content-Type': 'application/json',
             'Authorization': 'Basic ' + btoa(`${WP_USERNAME}:${WP_PASSWORD}`)
@@ -942,10 +942,10 @@ const getAllWordpressPages = async ({ type = 'pages' }) => {
 
 
     // const excludedSlugs = [
-    //     '/', 'home', 'enspire-science-courses',
+    //     '/', 'home', 'company-science-courses',
     //     'services/individual-services', 'project-management',
     //     'blog-preview', 'blog', 'contact-us', 'contact-m-for-groups',
-    //     'enspire-science-news', 'about-us/meet-the-team', 'why-were-different',
+    //     'company-science-news', 'about-us/meet-the-team', 'why-were-different',
     //     'about-us/track-record', 'about-us/testimonials',
     //     "erc-eligibility-calculator",
     //     "erc-panel-members-database",
@@ -957,12 +957,12 @@ const getAllWordpressPages = async ({ type = 'pages' }) => {
     //     'quick-dive-review-service',
     //     'erc-quick-dive-review-service',
 
-    //     "enspire-science-courses",
+    //     "company-science-courses",
     //     "services/individual-services",
     //     "project-management",
     //     "blog-preview",
-    //     "enspire-sciences-free-tools",
-    //     "enspire-science-news",
+    //     "company-sciences-free-tools",
+    //     "company-science-news",
     //     "about-us/meet-the-team",
     //     "why-were-different",
     //     "about-us/track-record",
@@ -993,14 +993,13 @@ const getAllWordpressPages = async ({ type = 'pages' }) => {
     //     "understanding-the-grant-agreement-ga-and-the-description-of-action-doa/",
     //     "understanding-the-consortium-agreement/",
     //     "company/18285478/",
-    //     "YoramBarZeev",
-    //     "ybz_enspire",
+    //     "YoramBarZeev", 
     //     "start-preparing-your-portugal-2030-application",
     //     "oportunidades-de-financiamento-a-fundo-no-portugal-2030",
     //     "funding-opportunities-in-portugal-2030",
     //     "privacy-policy",
     //     "terms-of-service",
-    //     "enspire-science-terms-of-use"
+    //     "company-science-terms-of-use"
     // ];
     // let filteredPagesList = thisPagesList;
     // // filteredPagesList = thisPagesList.filter(page => !excludedSlugs.includes(page.slug));
@@ -1041,7 +1040,7 @@ const getAllWordpressPages = async ({ type = 'pages' }) => {
     //================================
     //  update links in the content to be relative instead 
     // of absolute, 
-    // for example https://tools.enspire.science/contact-m-for-groups/?course=HE_Implementation 
+    // for example https://tools.company.science/contact-m-for-groups/?course=HE_Implementation 
     // should become /contact-m-for-groups/?course=HE_Implementation
     //  
     // ===============================
@@ -1068,7 +1067,7 @@ const getAllWordpressPages = async ({ type = 'pages' }) => {
     // console.log('All pages processed. Total:', result);
 
     // parseWpPage({
-    //     page: "https://enspire.science/grants/erc/erc-review-panel-members-database/"
+    //     page: "https://company.science/grants/erc/erc-review-panel-members-database/"
     // });
 
 
@@ -1084,7 +1083,7 @@ const getAllWordpressPages = async ({ type = 'pages' }) => {
     //     const slug = permalinkToSlug(page?.['Permalink']);
     //     console.log(page?.['Permalink'], '=>', slug);
 
-    //     const url = 'https://dev.enspire.science/' + slug;
+    //     const url = 'https://dev.company.science/' + slug;
     //     console.log(i, 'fetching url:', url);
     //     fetch(url)
     // }

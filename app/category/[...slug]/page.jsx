@@ -19,8 +19,8 @@ export default function Page({ params, searchParams }) {
                 slug: slug,
             }}
             pageData={{
-                title: `${title} - Enspire Science Ltd.`,
-                description: 'Have questions or need guidance? Contact us to learn how Enspire Science can support your Horizon Europe funding journey.',
+                title: `${title} - Dttraining`,
+                description: 'Driving Tests Training - Explore all posts in the ' + title + ' category. Stay updated with the latest insights, tips, and updates on ' + title + '.',
             }}
         >
             <div className="w-full">
@@ -29,7 +29,7 @@ export default function Page({ params, searchParams }) {
                         {title}
                     </h1>
 
-                    <p>
+                    <p className="py-3">
                         View all posts in the {title} category. Explore our latest insights, tips, and updates on {title} to stay informed and inspired.
                     </p>
                 </div>

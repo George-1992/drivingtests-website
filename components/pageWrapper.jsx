@@ -38,8 +38,7 @@ export default async function PageWrapper({ params, searchParams, pageData, chil
 
     const _pageData = pageData || await getPageData(pathname);
     // logger.log('_pageData ==> ', _pageData);
-
-    _pageData.content = (_pageData.content || '').replace('component.landing.home1', 'component.landing.home2');
+    // _pageData.content = (_pageData.content || '').replace('component.landing.home1', 'component.landing.home2');
 
 
     return (
@@ -55,6 +54,9 @@ export default async function PageWrapper({ params, searchParams, pageData, chil
                     items={[
                         { name: 'Home', href: '/' },
                         { name: 'Courses', href: '/courses' },
+                        { name: 'Speed Limits', href: '/speed-limits' },
+                        { name: 'LMS', href: '/lms-features' },
+                        { name: 'Blog', href: '/blog' },
                         { name: 'About us', href: '/about-us' },
                         // {
                         //     name: 'Resource Hub',
@@ -76,6 +78,27 @@ export default async function PageWrapper({ params, searchParams, pageData, chil
                         //     ]
                         // },
                         { name: 'Contact', href: '/contact-us', className: '' },
+                        {
+                            title: 'auth',
+                            component: (
+                                <div className="w-44 flex gap-2 rounded-xl border border-gray-300 items-center justify-center p-1 shadow-sm">
+                                    <Link
+                                        href="/auth/signin"
+                                        className="w-full py-2 px-3 text-xs font-semibold rounded-lg text-center text-slate-700 hover:scale-[103%] hover:bg-gray-200 transition-all duration-200"
+                                    >
+                                        Sign In
+                                    </Link>
+                                    <div className="h-4 border-r border-gray-300"></div>
+
+                                    <Link
+                                        href="/auth/signup"
+                                        className="w-full py-2 px-3 text-xs font-semibold rounded-lg text-center text-slate-700 hover:scale-[103%] hover:bg-gray-200 transition-all duration-200"
+                                    >
+                                        Sign Up
+                                    </Link>
+                                </div>
+                            )
+                        }
                     ]}
                 />
                 <div id="smooth-wrapper" className="w-full h-screen overflow-y-auto overflow-x-hidden" >
@@ -101,46 +124,54 @@ export default async function PageWrapper({ params, searchParams, pageData, chil
                                 className="text-gray-50"
                                 items={[
                                     {
-                                        title: 'Contact',
-                                        component: <div className="w-44 flex flex-col gap-2 text">
-                                            <Image
-                                                src={getFileUrl(_pageData?.website?.logo) || '/images/logo/logo_main.png'}
-                                                alt="logo"
-                                                width={200}
-                                                height={80}
-                                                className="rounded-md shadow-sm size-24"
-                                            />
-                                            <p className="text-sm">
-                                                info@enspire-science.com
-                                            </p>
-                                            <p className="text-sm opacity-75">
-                                                Rua de Camões
-                                                437 - Escritório 202, 4000-147 Porto
-                                                Portugal
+                                        title: '',
+                                        component: <div className="flex flex-col gap-2 text">
+                                            <div className="flex gap-3 items-center justify-start">
+                                                <Image
+                                                    src={getFileUrl(_pageData?.website?.logo) || '/images/logo/logo_main.png'}
+                                                    alt="logo"
+                                                    width={200}
+                                                    height={80}
+                                                    className="rounded-md shadow-sm size-20"
+                                                />
+                                                <Image
+                                                    src={'/images/logo/tr-logo.png'}
+                                                    alt="logo"
+                                                    width={200}
+                                                    height={80}
+                                                    className="rounded-md shadow-sm size-20"
+                                                />
+                                            </div>
+
+                                            <p className="text-sm opacity-75 w-full py-5">
+                                                Copyright 2010-2026 DT Driver Training Ltd, PO Box 12541, Penrose, Auckland, 1642. All rights reserved. Learner licence questions and images are used with permission from NZTA. Other questions and all answers are proprietary.
                                             </p>
                                             <div className="w-full h-40 ">
-                                                <p >
-                                                    Follow our EU grant conversation
+                                                <p className="text-sm">
+                                                    Download Our Mobile App
                                                 </p>
                                                 <div className="flex items-center gap-4 mt-2">
-                                                    <Link href={"https://www.linkedin.com/company/18285478/"}
-                                                        className="hover:scale-105 duration-300 border rounded-md p-1 shadow-sm"
-                                                        aria-label="Visit Enspire Science on LinkedIn"
+                                                    <Link href={"https://play.google.com/store/apps/details?id=com.zeeroapps.drivingtests"}
+                                                        className="hover:scale-105 duration-300 rounded-md p-1 "
+                                                        aria-label="Visit Dttraining on Google Play"
                                                     >
-                                                        <LinkedinIcon className="h-7 w-7 " />
+                                                        <Image
+                                                            src={"/images/other/icon-playstore.png"}
+                                                            alt="playstore"
+                                                            width={50}
+                                                            height={50}
+                                                        />
                                                     </Link>
-                                                    <Link href={"https://independent.academia.edu/YoramBarZeev"}
-                                                        className="hover:scale-105 duration-300 border rounded-md p-1 shadow-sm"
-                                                        aria-label="Visit Yoram Bar Zeev on Academia"
+                                                    <Link href={"https://apps.apple.com/nz/app/dt-driving-tests-theory/id913821658"}
+                                                        className="hover:scale-105 duration-300 rounded-md p-1"
+                                                        aria-label="Visit Dttraining on the App Store"
                                                     >
-                                                        <span className="inline-flex h-7 w-7 items-center justify-center leading-none">A</span>
-                                                    </Link>
-                                                    <Link href={"https://twitter.com/ybz_enspire"}
-                                                        className="hover:scale-105 duration-300 border rounded-md p-1 shadow-sm"
-                                                        aria-label="Visit Yoram Bar Zeev on Twitter"
-                                                    >
-                                                        <XIcon className="h-7 w-7 " />
-                                                        <span className="sr-only">Visit Yoram Bar Zeev on Twitter</span>
+                                                        <Image
+                                                            src={"/images/other/icon-appstore.png"}
+                                                            alt="appstore"
+                                                            width={50}
+                                                            height={50}
+                                                        />
                                                     </Link>
 
                                                 </div>
@@ -151,29 +182,44 @@ export default async function PageWrapper({ params, searchParams, pageData, chil
                                         </div>,
                                     },
                                     {
-                                        title: 'Recent Posts',
+                                        title: 'Categories',
                                         items: [
-                                            { name: 'Don\'t wait for the call: how to start preparing your Portugal 2030 application now', href: '/start-preparing-your-portugal-2030-application/' },
-                                            { name: 'Como encontrar oportunidades de financiamento a fundo perdido (que são mesmo para si) no Portugal 2030?', href: '/oportunidades-de-financiamento-a-fundo-no-portugal-2030/' },
-                                            { name: 'How to find non-refundable funding opportunities (that are truly right for you) under Portugal 2030?', href: '/funding-opportunities-in-portugal-2030/' }
+                                            { name: 'Car', href: '/category/car/' },
+                                            { name: 'News', href: '/category/news/' },
+                                            { name: 'Forklift', href: '/category/forklift/' },
+                                            { name: 'Motorbike', href: '/category/motorbike/' },
+                                            { name: 'First Aid', href: '/category/first-aid/' },
+                                            { name: 'Heavy Vehicles', href: '/category/heavy-vehicles/' },
                                         ]
                                     },
                                     {
-                                        title: 'Explore',
+                                        title: 'Help',
                                         items: [
-                                            { name: 'EU Funding Courses', href: '/enspire-science-courses/' },
-                                            { name: 'Consulting Services', href: '/services/individual-services/' },
-                                            { name: 'Project Management', href: '/project-management/' },
-                                            { name: 'Knowledge Base', href: '/blog-preview/' },
-                                            { name: 'Free Tools', href: '/enspire-sciences-free-tools/' }
+                                            { name: 'Advice', href: '/category/advice/' },
+                                            { name: 'Reviews', href: '/category/reviews/' },
+                                            { name: 'Quizzes', href: '/category/quizzes/' },
+                                            { name: 'First Aid', href: '/category/first-aid/' },
+                                            { name: 'Speed Limits', href: '/speed-limits' },
+                                            { name: 'Logbooks and Work-Time', href: '/category/logbooks-and-work-time/' },
                                         ]
                                     },
                                     {
-                                        title: 'Legal',
+                                        title: 'Resources',
                                         items: [
+                                            { name: 'Blog', href: '/blog' },
+                                            { name: 'Courses', href: '/courses' },
+                                            { name: 'Learning Portal', href: '/auth/signin' },
+                                            { name: 'Learning management system', href: '/lms-features' },
+                                        ]
+                                    },
+                                    {
+                                        title: 'About',
+                                        items: [
+                                            { name: 'About Us', href: '/about-us/' },
+                                            { name: 'Contact Us', href: '/contact-us/' },
                                             { name: 'Privacy Policy', href: '/privacy-policy/' },
                                             { name: 'Terms of Service', href: '/terms-of-service/' },
-                                            { name: 'Terms of Use', href: '/enspire-science-terms-of-use/' }
+                                            { name: 'Terms of Use', href: '/terms-of-use/' }
                                         ]
                                     },
 

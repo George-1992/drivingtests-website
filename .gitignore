@@ -35,3 +35,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+migrate/SpeedLimitZoneFull__View_-4771110835017720689.csv
+migrate/speedLimitZoneFull.json

@@ -3,7 +3,7 @@
 require('dotenv').config();
 const fs = require('fs');
 
-const DIRECTUS_URL = 'https://dtus.enspire.science';
+const DIRECTUS_URL = '';
 const DIRECTUS_API_TOKEN = 'u6p_mo3TJjgd8ChngDLnW6NYecAOtSRg';
 const NEXT_PUBLIC_DIRECTUS_TOKEN = process.env.NEXT_PUBLIC_DIRECTUS_TOKEN;
 

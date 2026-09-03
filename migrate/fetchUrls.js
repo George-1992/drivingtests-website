@@ -491,7 +491,7 @@ const fetchUrls = async ({
     await fetchUrls({
         urls,
         outputFileName,
-        selector: '.content-frame',
+        selector: '.lms-page',
         paraphrase: true,
     });
 

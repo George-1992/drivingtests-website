@@ -32,9 +32,9 @@ export default function Footer({ items, className = '' }) {
             // className="page-max-width w-11/12 md:w-full py-8 px-3 mt-10 flex flex-col items-center bg-white mb-20"
             className={
                 cn(
-                    'w-full h-screen py-8 px-3 flex flex-col items-center justify-center ',
+                    'relative w-full py-10 sm:py-12 px-4 sm:px-6 flex flex-col items-center justify-between overflow-hidden lg:h-screen lg:min-h-[640px]',
                     'bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-70',
-                    'shadow-md bg-gray-950 text-gray-100 rounded-3xl',
+                    'shadow-md bg-gray-950 text-gray-100 ',
                     '',
                     className
                 )
@@ -50,11 +50,11 @@ export default function Footer({ items, className = '' }) {
             <div
                 className="absolute inset-0 h-full w-full -z-10 bg-gray-900/20"
             />
-            <div className="w-full h-10 sm:h-20"></div>
-            <div className="w-content gap-8 sm:gap-12 flex flex-col md:flex-row md:flex-nowrap items-start justify-start md:justify-between">
+            <div className="w-full h-6 sm:h-10"></div>
+            <div className="w-full max-w-6xl flex flex-col gap-y-8 sm:gap-y-10 lg:flex-row lg:flex-nowrap lg:items-start lg:justify-between lg:gap-x-14">
                 {
                     footerCols.map((col, index) => (
-                        <div key={index} className="min-w-0 flex-1">
+                        <div key={index} className="min-w-0 w-full lg:flex-1">
                             <h6 className="text-lg text-gold-500 font-bold mb-4">{col.title}</h6>
                             <div className="flex flex-col gap-2 min-w-0">
                                 {
@@ -78,7 +78,7 @@ export default function Footer({ items, className = '' }) {
                     ))
                 }
             </div>
-            <div className="text-sm text-gold-500 py-20 w-72 text-center ">
+            <div className="text-sm text-gold-500 mt-10 sm:mt-14 pb-2 w-full max-w-xs text-center">
                 <p>© All rights reserved.</p>
                 {/* <p>2055 Limestone Rd STE 200-C Wilmington, DE 19808 United States</p> */}
             </div>

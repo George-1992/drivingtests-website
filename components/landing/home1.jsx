@@ -1,5 +1,4 @@
 import BgEl from "@/components/other/bg";
-import ClientLogos from "@/components/other/clientLogos";
 import NeatEl from "@/components/other/neat";
 import { ArrowRightIcon, ChevronDownIcon, ChevronRightIcon, FlaskConicalIcon } from "lucide-react";
 import Image from "next/image";
@@ -58,17 +57,17 @@ export default function Home1() {
         {
             date: "26 February 2026",
             title: "ERC calls ahead, EIC Pathfinder Open and FRONTIERS Call 4",
-            href: "/enspire-science-news/",
+            href: "/company-science-news/",
         },
         {
             date: "29 January 2026",
             title: "New services and upcoming MSCA Staff Exchanges and Twinning deadlines",
-            href: "/enspire-science-news/",
+            href: "/company-science-news/",
         },
         {
             date: "13 December 2025",
-            title: "Season greetings from the Enspire Science team",
-            href: "/enspire-science-news/",
+            title: "Season greetings from the company Science team",
+            href: "/company-science-news/",
         },
     ];
 
@@ -151,7 +150,7 @@ export default function Home1() {
                                 Explore Funding Schemes
                                 <FlaskConicalIcon className="size-6" />
                             </button>
-                         
+
                         </div>
                     </div>
                 </div>
@@ -162,7 +161,7 @@ export default function Home1() {
                         DISCOVER THE RIGHT FUNDING SCHEME FOR YOUR RESEARCH
                     </h2>
                     <p className="leading-relaxed text-slate-600 sm:text-lg">
-                        Enspire Science offers customized services and resources for a large variety of EU funding schemes. Discover the unique characteristics, specific requirements, and the comprehensive tools and guidance we provide to help you successfully navigate your funding journey.
+                        company Science offers customized services and resources for a large variety of EU funding schemes. Discover the unique characteristics, specific requirements, and the comprehensive tools and guidance we provide to help you successfully navigate your funding journey.
                     </p>
                     <div className="w-full h-12">
 
@@ -171,7 +170,7 @@ export default function Home1() {
                 <div className="absolute left-0 right-0 bottom-[605px] sm:bottom-2 w-full flex justify-center">
                     <div className="flex flex-col items-center">
                         <span className="text-xs mt-3 w-36 md:w-48 m-auto rounded-full text-center text-emerald-700 bg-orange-200 border border-orange-300 px-2 py-1 font-semibold uppercase md:tracking-[0.24em] animate-pulse">
-                            Enspire Science
+                            company Science
                         </span>
                         <ChevronDownIcon className="size-5 text-emerald-700 animate-bounce" />
                     </div>
@@ -221,9 +220,9 @@ export default function Home1() {
                 <div className="mb-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
                     <div>
                         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-emerald-700">Latest Updates</p>
-                        <h2 className="mt-3 text-3xl font-semibold text-slate-900 sm:text-4xl">Enspire Science News</h2>
+                        <h2 className="mt-3 text-3xl font-semibold text-slate-900 sm:text-4xl">company Science News</h2>
                     </div>
-                    <Link href="/enspire-science-news/" className="text-sm font-semibold text-emerald-700 hover:text-emerald-600">
+                    <Link href="/company-science-news/" className="text-sm font-semibold text-emerald-700 hover:text-emerald-600">
                         Read all news
                     </Link>
                 </div>
@@ -251,10 +250,10 @@ export default function Home1() {
                 <div className="overflow-hidden rounded-[2rem] border border-emerald-100 bg-gradient-to-br from-emerald-950 via-emerald-900 to-teal-700 px-6 py-8 text-white shadow-[0_24px_80px_rgba(6,78,59,0.18)]  ">
                     <div className="flex-col gap-5 md:flex-row md:items-end md:justify-between">
                         <div>
-                            <h3 className="mt-3 text-3xl text-gray-50 font-semibold leading-tight sm:text-4xl">Enspire Science in Numbers</h3>
+                            <h3 className="mt-3 text-3xl text-gray-50 font-semibold leading-tight sm:text-4xl">company Science in Numbers</h3>
                         </div>
                         <p className="max-w-xl text-sm leading-relaxed text-emerald-50/80 sm:text-base">
-                            Enspire Science has employed its unique methodology on thousands of projects from all scientific domains. Get to know us through key figures that reflect our experience, achievements, and impact in the EU funding landscape.
+                            company Science has employed its unique methodology on thousands of projects from all scientific domains. Get to know us through key figures that reflect our experience, achievements, and impact in the EU funding landscape.
                         </p>
                     </div>
 
@@ -276,21 +275,12 @@ export default function Home1() {
                 <div className="max-w-[650px] m-auto py-5">
                     <h3 className="text-xl sm:text-2xl text-center"> OUR CLIENTS  </h3>
                     <p className="text-center">
-                        Enspire Science has worked with hundreds of research organisations and companies over the years.
+                        company Science has worked with hundreds of research organisations and companies over the years.
                         View the full list of our clients
-                         <Link href="/about-us/track-record/" className="underline" aria-label="View the full list of our clients"> here</Link>
+                        <Link href="/about-us/track-record/" className="underline" aria-label="View the full list of our clients"> here</Link>
                     </p>
                 </div>
-                <ClientLogos
-                    // className="h-60 md:h-80 my-10"
-                    type="grid"
-                    motion={true}
-                    motionDuration={600}
-                    imageClassName="h-24 w-auto object-contain "
-                    itemClassName="bg-white flex w-24 h-24 items-center justify-center p-5 shadow-md"
-                // className="my-10"
-                // heightClassName="h-[28rem]"
-                />
+
             </div>
 
             {/* knowledge base */}
@@ -349,10 +339,10 @@ export default function Home1() {
                             Contact Us
                         </Link>
                         <Link
-                            href="mailto:info@enspire-science.com"
+                            href="mailto:info@company-science.com"
                             className="inline-flex items-center justify-center rounded-xl border border-white/60 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
                         >
-                            info@enspire-science.com
+                            info@company-science.com
                         </Link>
                     </div>
 

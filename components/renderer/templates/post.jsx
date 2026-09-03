@@ -14,29 +14,17 @@ export default function PostTemplate({ pageData, children, post }) {
     // console.log('PostTemplate pageData: ', pageData);
     const grants = [
         {
-            "name": "Horizon Europe",
-            "link": "/grants/horizon-europe/"
+            "name": "Courses",
+            "link": "/courses/"
         },
         {
-            "name": "ERC",
-            "link": "/grants/erc/"
+            "name": "Resources",
+            "link": "/blog/"
         },
         {
-            "name": "MSCA",
-            "link": "/grants/prepare-msca-grants/"
-        },
-        {
-            "name": "EIC",
-            "link": "/grants/eic/"
-        },
-        {
-            "name": "WIDERA",
-            "link": "/grants/widera/"
-        },
-        {
-            "name": "EU funding for companies",
-            "link": "/grants/horizon-europe-public-funding-for-companies/"
-        }
+            "name": "LMS",
+            "link": "/lms-features/"
+        }, 
     ];
 
     return (

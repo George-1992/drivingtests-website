@@ -17,8 +17,8 @@ export default function Page() {
                 slug: ['contact-us'],
             }}
             pageData={{
-                title: 'Contact Us - Enspire Science Ltd.',
-                description: 'Have questions or need guidance? Contact us to learn how Enspire Science can support your Horizon Europe funding journey.',
+                title: 'Contact Us',
+                description: 'Have questions or need guidance? Contact us to learn how Dttraining can support your driving tests preparation.',
             }}
         >
             <div className="w-full py-10">
@@ -40,7 +40,7 @@ export default function Page() {
                     </p>
                 </div>
 
-                <div className="py-10">
+                <div className="py-10 max-w-xl m-auto">
 
                     <FormBuilder
                         fields={[
@@ -49,8 +49,8 @@ export default function Page() {
                             { name: 'email', label: 'Email', type: 'email', required: true },
                             { name: 'subject', label: 'Subject', type: 'text', required: true },
                             { name: 'message', label: 'Message', type: 'textarea', required: true },
-                            { name: 'newsletter', label: 'Subscribe to newsletter', type: 'checkbox', required: false, checkboxLabel: 'I want to receive updates and news from Enspire Science.' },
-                            { name: 'gdpr', label: 'GDPR Consent', type: 'checkbox', required: true, checkboxLabel: 'I consent to the processing of my personal data in accordance with the GDPR and Enspire Science\'s privacy policy.' }
+                            { name: 'newsletter', label: 'Subscribe to newsletter', type: 'checkbox', required: false, checkboxLabel: 'I want to receive updates and news from Dttraining.' },
+                            { name: 'gdpr', label: 'GDPR Consent', type: 'checkbox', required: true, checkboxLabel: 'I consent to the processing of my personal data in accordance with the GDPR and Dttraining\'s privacy policy.' }
                         ]}
                         data={{
                             action: "contact-form",

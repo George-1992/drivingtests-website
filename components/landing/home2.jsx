@@ -3,8 +3,7 @@ import ScrollPath from "@/components/animations/scrollPath";
 import FormBuilder from "@/components/formBuilder";
 import BgEl from "@/components/other/bg";
 import Card2 from "@/components/other/card2";
-import ClientLogos from "@/components/other/clientLogos";
-import NeatEl from "@/components/other/neat";
+ import NeatEl from "@/components/other/neat";
 import { ArrowRightIcon, ChevronDownIcon, ChevronRightIcon, FlaskConicalIcon, MicroscopeIcon, SparkleIcon, ToolboxIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -63,17 +62,17 @@ export default function Home2() {
         {
             date: "26 February 2026",
             title: "ERC calls ahead, EIC Pathfinder Open and FRONTIERS Call 4",
-            href: "/enspire-science-news/",
+            href: "/company-science-news/",
         },
         {
             date: "29 January 2026",
             title: "New services and upcoming MSCA Staff Exchanges and Twinning deadlines",
-            href: "/enspire-science-news/",
+            href: "/company-science-news/",
         },
         {
             date: "13 December 2025",
-            title: "Season greetings from the Enspire Science team",
-            href: "/enspire-science-news/",
+            title: "Season greetings from the company Science team",
+            href: "/company-science-news/",
         },
     ];
 
@@ -166,7 +165,7 @@ export default function Home2() {
                             <div className="flex flex-col items-start justify-center gap-5 text-left" data-lag="0.3" data-speed="0.65">
                                 <p className="text-base sm:text-lg max-w-xl  gsap-fade-down">
                                     <span className="opacity-0">____________________</span>
-                                    Enspire Science helps applicants and organizations across Horizon Europe, STEP-relevant opportunities, and selected national funding routes.
+                                    company Science helps applicants and organizations across Horizon Europe, STEP-relevant opportunities, and selected national funding routes.
                                 </p>
                                 <button className="btn btn-primary gsap-fade-up">
                                     Get in touch
@@ -212,9 +211,9 @@ export default function Home2() {
                     <div className="gsap-morph-part-2 w-full">
                         <div className="w-content gsap-morph-text-2 absolute inset-0 z-10 w-full h-screen flex items-center px-6 sm:px-12 lg:px-20 opacity-0">
                             <div className="max-w-2xl text-gray-50">
-                                <p className="text-xs sm:text-sm uppercase tracking-[0.24em] text-emerald-100">Enspire Science help</p>
+                                <p className="text-xs sm:text-sm uppercase tracking-[0.24em] text-emerald-100">company Science help</p>
                                 <h2 className="mt-4 text-xl sm:text-3xl font-semibold leading-tight text-gray-700">
-                                    Enspire Science helps applicants and organizations across Horizon Europe,  <br />
+                                    company Science helps applicants and organizations across Horizon Europe,  <br />
                                     STEP-relevant opportunities,   <br />
                                     and selected national funding routes
                                 </h2>
@@ -342,10 +341,10 @@ export default function Home2() {
                 </div>
             </div>
 
-            {/* Why Enspire */}
+            {/* Why company */}
             <div className="w-full py-10 sm:py-16 px-6 sm:px-12 flex flex-col items-center gap-3 text-center header-white">
                 <h3 className="text-center text-2xl sm:text-3xl font-semibold text-slate-900 ">
-                    Why Enspire?
+                    Why company?
                 </h3>
                 <p className="max-w-3xl ">
                     {
@@ -429,27 +428,18 @@ export default function Home2() {
                         <div className="max-w-[650px] m-auto py-5">
                             <h3 className="text-xl sm:text-2xl text-center"> OUR CLIENTS  </h3>
                             <p className="text-center">
-                                Enspire Science has worked with hundreds of research organisations and companies over the years.
+                                company Science has worked with hundreds of research organisations and companies over the years.
                                 View the full list of our clients
                                 <Link href="/about-us/track-record/" className="underline" aria-label="View the full list of our clients"> here</Link>
                             </p>
                         </div>
-                        <ClientLogos
-                            // className="h-60 md:h-80 my-10"
-                            type="grid"
-                            motion={true}
-                            motionDuration={600}
-                            imageClassName="h-24 w-auto object-contain "
-                            itemClassName="bg-white flex w-24 h-24 items-center justify-center p-5 shadow-md"
-                        // className="my-10"
-                        // heightClassName="h-[28rem]"
-                        />
+                   
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         {[
                             {
-                                quote: "Enspire helped us completely rethink the structure of our ERC proposal. The feedback was sharp, direct, and exactly what we needed.",
+                                quote: "company helped us completely rethink the structure of our ERC proposal. The feedback was sharp, direct, and exactly what we needed.",
                                 name: "Principal Investigator",
                                 org: "European Research University",
                             },

@@ -35,6 +35,8 @@ export const directusRequest = async ({
 
 
     try {
+        const normalizedEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+
         // Handle nested objects in params (especially filter objects)
         let queryString = '';
         if (Object.keys(params).length) {
@@ -54,12 +56,12 @@ export const directusRequest = async ({
                 }
             });
 
-            queryString = '?' + searchParams.toString();
+            queryString = `?${searchParams.toString()}`;
         }
 
         const randomString = Math.random().toString(36).substring(2, 8);
-
-        const url = `${DIRECTUS_URL}${endpoint}${queryString}&random=${randomString}`;
+        const randomParam = `${queryString ? '&' : '?'}random=${randomString}`;
+        const url = `${DIRECTUS_URL}${normalizedEndpoint}${queryString}${randomParam}`;
         // console.log('url: ', url);
 
         const options = {
