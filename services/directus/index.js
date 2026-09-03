@@ -124,7 +124,7 @@ export const directusRequest = async ({
         };
 
         console.log('directusRequest url: ', url);
-        console.log('directusRequest headers: ', headers);
+        console.log('directusRequest headers length: ', JSON.stringify(headers).length);
 
 
         // Avoid sending Content-Type on GET/HEAD because some proxies reject it.
@@ -159,7 +159,7 @@ export const directusRequest = async ({
             console.warn('directusRequest: Recovered JSON from malformed response. URL:', url);
         }
 
-        // console.log('json ==> ', json);
+        console.log('json ==> ', json);
 
         if (json?.errors) {
             let msg = '';
