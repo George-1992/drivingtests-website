@@ -33,6 +33,8 @@ export const directusRequest = async ({
     }
 
 
+    const _dtusUrl = DIRECTUS_URL.endsWith('/') ? DIRECTUS_URL.slice(0, -1) : DIRECTUS_URL;
+
 
     try {
         const normalizedEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
@@ -61,8 +63,8 @@ export const directusRequest = async ({
 
         const randomString = Math.random().toString(36).substring(2, 8);
         const randomParam = `${queryString ? '&' : '?'}random=${randomString}`;
-        const url = `${DIRECTUS_URL}${normalizedEndpoint}${queryString}${randomParam}`;
-        // console.log('url: ', url);
+        const url = `${_dtusUrl}${normalizedEndpoint}${queryString}${randomParam}`;
+        console.log('directusRequest url: ', url);
 
         const options = {
             method,

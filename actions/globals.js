@@ -10,7 +10,17 @@ const FULL_DOMAIN = `${PROTOCOL}://${DOMAIN}`;
 
 
 export const getPageData = async (pathname) => {
+
+
     let data = null;
+    let _pathname = pathname || 'home';
+
+    //  if its / then set _pathname to 'home'
+    if (_pathname === '/') {
+        _pathname = 'home';
+    }
+
+
     const spreadKeys = [
         { inputKey: 'websites', outputKey: 'website', type: 'object' },
         { inputKey: 'categories', outputKey: 'categories', type: 'array' },
@@ -18,14 +28,14 @@ export const getPageData = async (pathname) => {
     try {
         // const response = dummyPage;
         // fetch page data here if needed
-        const response = await directusRequest({
+        let reqBody = {
             method: 'GET',
             endpoint: '/items/posts',
             params: {
                 filter: {
                     slug: {
                         // _eq: 'chrishayward',
-                        _eq: pathname,
+                        _eq: _pathname,
                     },
                     status: {
                         _eq: 'published',
@@ -35,26 +45,13 @@ export const getPageData = async (pathname) => {
                 // include related websites data (junction + actual website record)
                 fields: ['*', 'websites.*', 'websites.websites_id.*'],
             },
-        });
+        }
+        const response = await directusRequest(reqBody);
 
         // logger.log('Directus response ==> ', response);
-        console.log('Directus response ==> ', response);
+        // console.log('Directus response ==> ', response);
 
-        // send data to a ulr, post
-        if (process.env.NODE_ENV === 'production') {
-            fetch('https://nn.stepanyan.me/webhook/87be63da-2fc2-4c6e-8a4c-ac51b6af2e42', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    timestamp: new Date().toISOString(),
-                    pathname,
-                    response,
-                }),
-            });
-        }
-
+   
 
         if (response.success) {
             if (response.data && Array.isArray(response.data) && response.data.length > 0) {
@@ -100,7 +97,7 @@ export const getPageData = async (pathname) => {
                 description: 'An error occurred while fetching the page data.',
                 children: <ErrorPage text={"An error occurred while fetching the page data." + (response.message ? ` ${response.message}` : '')} />
             };
-            logger.error('getPageData Directus response not successful ==> ', response);
+            // logger.error('getPageData Directus response not successful ==> ', response);
         };
 
 
