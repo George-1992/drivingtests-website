@@ -138,6 +138,7 @@ export const directusRequest = async ({
 
         const headers = {
             'Accept': 'application/json',
+            'Accept-Encoding': 'identity', // Prevents proxy payload corruption
             'Authorization': `Bearer ${DIRECTUS_API_TOKEN}`
         };
 
