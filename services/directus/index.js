@@ -96,7 +96,7 @@ export const directusRequest = async ({
             resObj.success = false;
             resObj.message = `Directus request failed:  ${JSON.stringify(response)}`;
             resObj.data = {
-                response
+                response: JSON.stringify(response),
             }
             return resObj;
         }
@@ -108,7 +108,7 @@ export const directusRequest = async ({
             resObj.success = false;
             resObj.message = `Failed to parse JSON response. Status: ${response.status}.`;
             resObj.data = {
-                response,
+                response: JSON.stringify(response),
             }
             return resObj;
         }
