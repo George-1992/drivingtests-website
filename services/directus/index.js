@@ -109,6 +109,8 @@ export const directusRequest = async ({
             resObj.message = `Failed to parse JSON response. Status: ${response.status}.`;
             resObj.data = {
                 response: JSON.stringify(response),
+                rawText: rawText,
+                error: JSON.stringify(error),
             }
             return resObj;
         }
