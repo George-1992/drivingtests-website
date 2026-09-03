@@ -51,7 +51,7 @@ export const getPageData = async (pathname) => {
         // logger.log('Directus response ==> ', response);
         // console.log('Directus response ==> ', response);
 
-   
+
 
         if (response.success) {
             if (response.data && Array.isArray(response.data) && response.data.length > 0) {
@@ -95,7 +95,7 @@ export const getPageData = async (pathname) => {
             data = {
                 title: 'Error',
                 description: 'An error occurred while fetching the page data.',
-                children: <ErrorPage text={"An error occurred while fetching the page data." + (response.message ? ` ${response.message}` : '')} />
+                children: <ErrorPage text={"An error occurred while fetching the page data." + JSON.stringify(response)} />
             };
             // logger.error('getPageData Directus response not successful ==> ', response);
         };
