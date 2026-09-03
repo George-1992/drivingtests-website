@@ -81,7 +81,7 @@ export const directusRequest = async ({
         const response = await fetch(url, options);
         const json = await response.json();
 
-        // console.log('json ==> ', json.errors);
+        console.log('json ==> ', json);
 
         if (json.errors) {
             let msg = '';
@@ -110,7 +110,7 @@ export const directusRequest = async ({
         return resObj;
 
     } catch (error) {
-        console.error(error);
+        console.error('directusRequest: Error during Directus request:', error);
         resObj.message = error.message || 'An error occurred';
         return resObj;
     }
