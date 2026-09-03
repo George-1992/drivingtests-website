@@ -2,58 +2,7 @@ const DIRECTUS_URL = (process.env.DIRECTUS_URL || '').trim();
 const DIRECTUS_API_TOKEN = (process.env.DIRECTUS_API_TOKEN || '').replace(/[\r\n]+/g, '').trim();
 const NEXT_PUBLIC_DIRECTUS_TOKEN = (process.env.NEXT_PUBLIC_DIRECTUS_TOKEN || process.env.PUBLIC_DIRECTUS_TOKEN || '').trim();
 
-const parseJsonWithRecovery = (rawText) => {
-    const text = (rawText || '').trim();
-    if (!text) return { ok: true, data: null, recovered: false };
 
-    try {
-        return { ok: true, data: JSON.parse(text), recovered: false };
-    } catch (error) {
-        // Some proxies append characters after a valid JSON payload.
-        const firstChar = text[0];
-        if (firstChar !== '{' && firstChar !== '[') {
-            return { ok: false, error, recovered: false };
-        }
-
-        let depth = 0;
-        let inString = false;
-        let escaped = false;
-
-        for (let i = 0; i < text.length; i++) {
-            const ch = text[i];
-
-            if (inString) {
-                if (escaped) {
-                    escaped = false;
-                } else if (ch === '\\') {
-                    escaped = true;
-                } else if (ch === '"') {
-                    inString = false;
-                }
-                continue;
-            }
-
-            if (ch === '"') {
-                inString = true;
-                continue;
-            }
-
-            if (ch === '{' || ch === '[') depth++;
-            if (ch === '}' || ch === ']') depth--;
-
-            if (depth === 0) {
-                const candidate = text.slice(0, i + 1);
-                try {
-                    return { ok: true, data: JSON.parse(candidate), recovered: true };
-                } catch {
-                    // keep scanning until we find a valid balanced JSON candidate
-                }
-            }
-        }
-
-        return { ok: false, error, recovered: false };
-    }
-};
 
 export const directusRequest = async ({
     method = 'GET',
@@ -143,20 +92,27 @@ export const directusRequest = async ({
         const response = await fetch(url, options);
         const contentType = response.headers.get('content-type') || 'unknown';
         const rawText = await response.text();
-        const parsed = parseJsonWithRecovery(rawText);
 
-        if (!parsed.ok) {
+        if (!response.ok) {
             const bodyPreview = rawText.slice(0, 300).replace(/\s+/g, ' ').trim();
             resObj.message = `Failed to parse JSON response. Status: ${response.status}. Content-Type: ${contentType}. URL: ${url}. Preview: ${bodyPreview}`;
             return resObj;
         }
 
-        const json = parsed.data;
+        let json;
+        try {
+            json = JSON.parse(rawText);
+        } catch (error) {
+            resObj.success = false;
+            resObj.message = `Failed to parse JSON response. Status: ${response.status}. Content-Type: ${contentType}. URL: ${url}. Preview: ${rawText.slice(0, 300).replace(/\s+/g, ' ').trim()}`;
+            resObj.data = {
+                rawText,
+                contentType,
+                status: response.status,
+                url,
+            }
+            return resObj;
 
-        if (parsed.recovered) {
-            resObj.warning = true;
-            resObj.message = 'Response contained trailing non-JSON characters; payload was recovered.';
-            console.warn('directusRequest: Recovered JSON from malformed response. URL:', url);
         }
 
         // console.log('json ==> ', json);
