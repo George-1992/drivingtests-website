@@ -10,6 +10,8 @@ export async function generateStaticParams() {
     return result;
 }
 
-export const dynamic = 'force-static';
+export const dynamic = 'force-dynamic';
+// 'force-static' - page is generated at build time and cached, but can be revalidated on demand
+// 'force-dynamic' - page is generated on demand on the server, and cached for subsequent requests
 // export const revalidate = false; // false | 0 | number
 // export const dynamicParams = true;

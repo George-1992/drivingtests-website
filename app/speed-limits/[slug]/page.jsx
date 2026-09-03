@@ -344,6 +344,6 @@ export async function generateStaticParams() {
     return result;
 }
 
-export const dynamic = 'force-static';
+export const dynamic = 'force-dynamic';
 // export const revalidate = false; // false | 0 | number
 // export const dynamicParams = true;
