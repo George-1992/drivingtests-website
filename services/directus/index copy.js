@@ -141,9 +141,6 @@ export const directusRequest = async ({
             'Authorization': `Bearer ${DIRECTUS_API_TOKEN}`
         };
 
-        console.log('directusRequest url: ', url);
-        console.log('directusRequest headers length: ', JSON.stringify(headers).length);
-
 
         // Avoid sending Content-Type on GET/HEAD because some proxies reject it.
         if (isPost) {
