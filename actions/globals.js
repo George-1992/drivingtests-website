@@ -88,12 +88,12 @@ export const getPageData = async (pathname) => {
 
 
     } catch (error) {
-        logger.error('getPageData error ==> ', error);
         data = {
             title: 'Error',
             description: 'An error occurred while fetching the page data.',
             content: `<div class="error">An error occurred while fetching the page data: ${error.message}</div>`,
         };
+        logger.error('getPageData error ==> ', error);
     } finally {
         // logger.log('getPageData final data ==> ', data);
         return data;
