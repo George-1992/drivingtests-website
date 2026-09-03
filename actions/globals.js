@@ -83,6 +83,7 @@ export const getPageData = async (pathname) => {
                 description: 'An error occurred while fetching the page data.',
                 children: <ErrorPage text={"An error occurred while fetching the page data." + (response.message ? ` ${response.message}` : '')} />
             };
+            logger.error('getPageData Directus response not successful ==> ', response);
         };
 
 
