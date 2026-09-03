@@ -2,7 +2,7 @@
 
 // import { objectToText } from "@/utils/other";
 
-const N8N_EMAILER_WEBHOOK_URL = process.env.N8N_EMAILER_WEBHOOK_URL;
+const N8N_EMAILER_WEBHOOK_URL = process.env.N8N_EMAILER_WEBHOOK_URL || process.env.N8N_WEBHOOK_URL;
 const N8N_EMAILER_API_KEY = process.env.N8N_EMAILER_API_KEY;
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 
@@ -19,7 +19,7 @@ export const sendEmailServer = async (data = '') => {
                 'x-api-key': N8N_EMAILER_API_KEY
             },
             body: JSON.stringify({
-                subject: 'Stepanyan.me Contact Form',
+                subject: 'Contact Form',
                 sendTo: ADMIN_EMAIL,
                 data: data
             }),
