@@ -1,6 +1,6 @@
-const DIRECTUS_URL = process.env.DIRECTUS_URL;
-const DIRECTUS_API_TOKEN = process.env.DIRECTUS_API_TOKEN;
-const NEXT_PUBLIC_DIRECTUS_TOKEN = process.env.NEXT_PUBLIC_DIRECTUS_TOKEN || process.env.PUBLIC_DIRECTUS_TOKEN;
+const DIRECTUS_URL = (process.env.DIRECTUS_URL || '').trim();
+const DIRECTUS_API_TOKEN = (process.env.DIRECTUS_API_TOKEN || '').replace(/[\r\n]+/g, '').trim();
+const NEXT_PUBLIC_DIRECTUS_TOKEN = (process.env.NEXT_PUBLIC_DIRECTUS_TOKEN || process.env.PUBLIC_DIRECTUS_TOKEN || '').trim();
 
 const parseJsonWithRecovery = (rawText) => {
     const text = (rawText || '').trim();
@@ -117,15 +117,24 @@ export const directusRequest = async ({
         const randomString = Math.random().toString(36).substring(2, 8);
         const randomParam = `${queryString ? '&' : '?'}random=${randomString}`;
         const url = `${_dtusUrl}${normalizedEndpoint}${queryString}${randomParam}`;
+
+        const headers = {
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${DIRECTUS_API_TOKEN}`
+        };
+
         console.log('directusRequest url: ', url);
+        console.log('directusRequest headers: ', headers);
+
+
+        // Avoid sending Content-Type on GET/HEAD because some proxies reject it.
+        if (isPost) {
+            headers['Content-Type'] = 'application/json';
+        }
 
         const options = {
             method,
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${DIRECTUS_API_TOKEN}`
-            },
-
+            headers,
         };
         if (isPost) {
             options.body = JSON.stringify(payload);
@@ -150,7 +159,7 @@ export const directusRequest = async ({
             console.warn('directusRequest: Recovered JSON from malformed response. URL:', url);
         }
 
-        console.log('json ==> ', json);
+        // console.log('json ==> ', json);
 
         if (json?.errors) {
             let msg = '';
