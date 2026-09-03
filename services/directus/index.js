@@ -1,7 +1,8 @@
+import axios from "axios";
+
 const DIRECTUS_URL = (process.env.DIRECTUS_URL || '').trim();
 const DIRECTUS_API_TOKEN = (process.env.DIRECTUS_API_TOKEN || '').replace(/[\r\n]+/g, '').trim();
 const NEXT_PUBLIC_DIRECTUS_TOKEN = (process.env.NEXT_PUBLIC_DIRECTUS_TOKEN || process.env.PUBLIC_DIRECTUS_TOKEN || '').trim();
-
 
 
 export const directusRequest = async ({
@@ -34,9 +35,7 @@ export const directusRequest = async ({
         return resObj;
     }
 
-
     const _dtusUrl = DIRECTUS_URL.endsWith('/') ? DIRECTUS_URL.slice(0, -1) : DIRECTUS_URL;
-
 
     try {
         const normalizedEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
@@ -50,10 +49,8 @@ export const directusRequest = async ({
                 const value = Array.isArray(_value)
                     ? _value.join(',')
                     : _value;
-                // console.log('key, value ==> ', key, value);
 
                 if (typeof value === 'object' && value !== null) {
-                    // Handle nested objects (like filter objects) by JSON stringifying
                     searchParams.append(key, JSON.stringify(value));
                 } else {
                     searchParams.append(key, value);
@@ -75,52 +72,53 @@ export const directusRequest = async ({
         console.log('directusRequest url: ', url);
         console.log('directusRequest headers length: ', JSON.stringify(headers).length);
 
-
-        // Avoid sending Content-Type on GET/HEAD because some proxies reject it.
         if (isPost) {
             headers['Content-Type'] = 'application/json';
         }
 
-        const options = {
+        const axiosConfig = {
+            url,
             method,
             headers,
+            validateStatus: () => true, // let us handle non-2xx ourselves, same as your !response.ok flow
+            httpAgent: new (require('http').Agent)({ keepAlive: false }),
+            httpsAgent: new (require('https').Agent)({ keepAlive: false }),
         };
         if (isPost) {
-            options.body = JSON.stringify(payload);
+            axiosConfig.data = payload;
         }
 
-        const response = await fetch(url, options);
-        const rawText = await response.text();
+        const response = await axios(axiosConfig);
 
-        if (!response.ok) {
+        if (response.status < 200 || response.status >= 300) {
             resObj.success = false;
-            resObj.message = `Directus request failed:  ${JSON.stringify(response)}`;
+            resObj.message = `Directus request failed: ${response.status}`;
             resObj.data = {
-                response: JSON.stringify(response),
+                response: JSON.stringify(response.data),
             }
             return resObj;
         }
 
-        let json;
-        try {
-            json = JSON.parse(rawText);
-        } catch (error) {
-            resObj.success = false;
-            resObj.message = `Failed to parse JSON response. Status: ${response.status}.`;
-            resObj.data = {
-                response: JSON.stringify(response),
-                rawText: rawText,
-                error: JSON.stringify(error),
+        // axios already parses JSON when content-type is application/json
+        // but keep an explicit re-parse guard in case it comes back as a raw string
+        let json = response.data;
+        if (typeof json === 'string') {
+            try {
+                json = JSON.parse(json);
+            } catch (error) {
+                resObj.success = false;
+                resObj.message = `Failed to parse JSON response. Status: ${response.status}.`;
+                resObj.data = {
+                    rawText: json,
+                    error: error.message,
+                }
+                return resObj;
             }
-            return resObj;
         }
-
-        // console.log('json ==> ', json);
 
         if (json?.errors) {
             let msg = '';
             if (Array.isArray(json.errors)) {
-
                 json.errors.forEach(err => {
                     msg += err.message;
                     if (err.extensions) {
@@ -137,7 +135,7 @@ export const directusRequest = async ({
             return resObj;
         }
 
-        resObj.success = response.ok;
+        resObj.success = true;
         resObj.message = json?.message || resObj.message || '';
         resObj.data = json?.data || null;
         resObj.meta = json?.meta || null;
