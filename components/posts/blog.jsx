@@ -35,6 +35,9 @@ export default async function Blog({ searchParams = {} }) {
         return [lower, capitalized, upper, dashed, underscored];
     })(categoryFilter);
 
+    console.log('searchVersions: ', searchVersions);
+    console.log('categoryFilter: ', categoryFilter);
+
     if (categoryFilter) {
         //if category defined first fetch category id from directus
         const categoryResult = await directusRequest({
@@ -49,6 +52,8 @@ export default async function Blog({ searchParams = {} }) {
                 },
             },
         });
+        console.log('categoryResult: ', categoryResult);
+
 
 
         if (Array.isArray(categoryResult.data) && categoryResult.data.length > 0) {
@@ -69,6 +74,8 @@ export default async function Blog({ searchParams = {} }) {
                     },
                 },
             });
+            console.log('postsCategories: ', postsCategories.length);
+
             if (Array.isArray(postsCategories.data) && postsCategories.data.length > 0) {
                 postIds = postsCategories.data.map((pc) => pc.posts_id).filter((id) => id !== undefined);
             }

@@ -159,7 +159,7 @@ export const directusRequest = async ({
             console.warn('directusRequest: Recovered JSON from malformed response. URL:', url);
         }
 
-        console.log('json ==> ', json);
+        // console.log('json ==> ', json);
 
         if (json?.errors) {
             let msg = '';
