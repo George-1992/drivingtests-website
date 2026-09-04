@@ -68,10 +68,7 @@ export const directusRequest = async ({
             'Accept': 'application/json',
             'Authorization': `Bearer ${DIRECTUS_API_TOKEN}`
         };
-
-        console.log('directusRequest url: ', url);
-        console.log('directusRequest headers length: ', JSON.stringify(headers).length);
-
+ 
         if (isPost) {
             headers['Content-Type'] = 'application/json';
         }

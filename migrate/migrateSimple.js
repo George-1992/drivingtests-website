@@ -828,50 +828,50 @@ const handleSpeedLimitContent = async () => {
         console.log('Total pages and posts to migrate:', wpPagesAndPosts.length);
 
 
-        // // ***********************************
-        // // directus pages only
-        // // ***********************************
-        // const directusSlugs = [
-        //     {
-        //         slug: 'courses',
-        //         peraprahse: false,
-        //         cleanHtml: true,
-        //         beatifyHtml: true,
-        //     }
-        // ]
+        // ***********************************
+        // directus pages only
+        // ***********************************
+        const directusSlugs = [
+            {
+                slug: 'courses',
+                peraprahse: false,
+                cleanHtml: true,
+                beatifyHtml: false,
+            }
+        ]
 
-        // // fetch based on slugs
-        // for (const page of directusSlugs) {
-        //     console.log(`Fetching Directus page for slug: ${page.slug}`);
+        // fetch based on slugs
+        for (const page of directusSlugs) {
+            console.log(`Fetching Directus page for slug: ${page.slug}`);
 
-        //     const directusPage = await directusRequest({
-        //         method: 'GET',
-        //         path: `items/posts?filter[slug][_eq]=${page.slug}`,
-        //     });
-        //     page.directusData = directusPage?.[0] || null;
+            const directusPage = await directusRequest({
+                method: 'GET',
+                path: `items/posts?filter[slug][_eq]=${page.slug}`,
+            });
+            page.directusData = directusPage?.[0] || null;
 
-        //     console.log(`processing content for slug "${page.slug}". Original length: ${page.directusData?.content?.length || 0} characters....`);
-        //     let updatedContent = await processContent(page.directusData?.content || '', {
-        //         beatifyHtml: page.beatifyHtml,
-        //     });
-        //     console.log(`Processed content for slug "${page.slug}". Length: ${updatedContent.length} characters.`);
+            console.log(`processing content for slug "${page.slug}". Original length: ${page.directusData?.content?.length || 0} characters....`);
+            let updatedContent = await processContent(page.directusData?.content || '', {
+                beatifyHtml: page.beatifyHtml,
+            });
+            console.log(`Processed content for slug "${page.slug}". Length: ${updatedContent.length} characters.`);
 
-        //     // update directus page content if changed
-        //     if (updatedContent !== page.directusData?.content) {
-        //         const updatedPage = await directusRequest({
-        //             method: 'PATCH',
-        //             path: `items/posts/${page.directusData.id}`,
-        //             body: {
-        //                 content: updatedContent,
-        //             },
-        //         });
-        //     }
-        //     console.log(`==Finished processing Directus page for slug: ${page.slug}`);
+            // update directus page content if changed
+            if (updatedContent !== page.directusData?.content) {
+                const updatedPage = await directusRequest({
+                    method: 'PATCH',
+                    path: `items/posts/${page.directusData.id}`,
+                    body: {
+                        content: updatedContent,
+                    },
+                });
+            }
+            console.log(`==Finished processing Directus page for slug: ${page.slug}`);
 
-        // }
-        // console.log('directusSlugs: ', directusSlugs);
-        // return;
-        // // ***********************************
+        }
+        console.log('directusSlugs: ', directusSlugs);
+        return;
+        // ***********************************
 
 
         const currentDirectusItems = await directusRequest({

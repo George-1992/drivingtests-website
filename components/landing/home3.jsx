@@ -175,7 +175,7 @@ export default async function Home3() {
                                 .map((article, index) => (
                                     <Link
                                         key={article.slug || article.title || index}
-                                        href={article.href || `/blog/${article.slug || article.title?.toLowerCase().replace(/\s+/g, '-')}`}
+                                        href={article.href || `/${article.slug || article.title?.toLowerCase().replace(/\s+/g, '-')}`}
                                         className="group relative overflow-hidden rounded-3xl border border-slate-200 p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-yellow-300 hover:shadow-lg"
                                     >
                                         <div className={[
