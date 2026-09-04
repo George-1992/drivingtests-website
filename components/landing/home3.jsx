@@ -76,9 +76,19 @@ export default async function Home3() {
         endpoint: '/items/posts',
         params: {
             filter: {
-                type: {
-                    _eq: 'post'
-                }
+                _and: [
+                    {
+                        type: {
+                            _eq: 'post'
+                        }
+                    },
+                    {
+                        content: {
+                            _nnull: true,
+                            _nempty: true
+                        }
+                    }
+                ]
             },
             limit: 6,
             sort: '-date_created',

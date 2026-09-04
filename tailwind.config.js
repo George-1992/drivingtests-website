@@ -269,6 +269,7 @@ module.exports = {
     "gap-1", "gap-2", "gap-3", "gap-4", "gap-5", "gap-6", "gap-8", "gap-10", "gap-12", "gap-14", "gap-16", "gap-20",
     "w-1", "w-2", "w-3", "w-4", "w-5", "w-6", "w-8", "w-10", "w-12", "w-14", "w-16", "w-20", "w-24", "w-32", "w-40", "w-48", "w-56", "w-64","w-72","w-80","w-96","w-auto","w-full","w-screen",
     "h-1", "h-2", "h-3", "h-4", "h-5", "h-6", "h-8", "h-10", "h-12", "h-14", "h-16", "h-20", "h-24", "h-32", "h-40", "h-48", "h-56", "h-64","h-auto","h-full","h-screen",
+    "h-[100px]", "h-[200px]", "h-[300px]", "h-[400px]", "h-[500px]", "h-[600px]", "h-[700px]", "h-[800px]", "h-[900px]", "h-[1000px]",
     "md:w-60", "md:w-72", "md:w-80", "md:w-96", "md:w-auto", "md:w-full", "md:w-screen",
     "md:h-60", "md:h-72", "md:h-80", "md:h-96", "md:h-auto", "md:h-full", "md:h-screen",
  
