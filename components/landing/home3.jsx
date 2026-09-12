@@ -102,6 +102,7 @@ export default async function Home3() {
 
     return (
         <div className="w-full">
+            <div className="w-full h-16 sm:h-10"></div>
 
             {/* articles */}
             <div className="w-full ">
@@ -242,7 +243,7 @@ export default async function Home3() {
                         Explore the speed limits across New Zealand with our interactive map, helping you stay informed and drive safely.
                     </p>
                 </div>
-                <Link href="/speed-limits-map" className="my-10 w-full group relative h-40 sm:h-60 flex items-center justify-center text-amber-600 hover:text-amber-700 transition-colors shadow-lg rounded-lg overflow-hidden">
+                <Link href="/speed-limits-map" className="h-60 sm:h-[400px] my-10 w-full group relative flex items-center justify-center text-amber-600 hover:text-amber-700 transition-colors shadow-lg rounded-lg overflow-hidden">
                     <Image
                         src="/images/other/new-zealand-physical-map-2.jpg"
                         alt="New Zealand Physical Map"
@@ -405,6 +406,39 @@ export default async function Home3() {
                     </div>
                 </div>
 
+            </section>
+
+            {/* why buy from TR Group */}
+            <section className="py-8 sm:py-10">
+                <div className="rounded-3xl border border-amber-200 bg-gradient-to-br from-amber-50 via-white to-teal-50 p-6 shadow-sm sm:p-8">
+                    <div className="grid items-center gap-6 lg:grid-cols-[1.05fr_1.35fr]">
+                        <div>
+                            <span className="inline-flex items-center rounded-full border border-amber-200 bg-amber-100 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">
+                                Why buy vehicles from TR Group
+                            </span>
+                            <h3 className="mt-4 text-2xl font-extrabold text-gray-900 sm:text-3xl">
+                                Need to Buy Vehicles in New Zealand and Australia?
+                            </h3>
+                            <p className="mt-3 text-sm leading-relaxed text-gray-600 sm:text-base">
+                                Richard, Todd and Andy have 6 good reasons why you should consider purchasing one of our quality used vehicles!
+                                Call the team on 0800 55 56 78 and they will help you find the right used truck or trailer for your business.
+                            </p>
+                        </div>
+
+                        <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md">
+                            <div className="aspect-video w-full">
+                                <iframe
+                                    className="h-full w-full"
+                                    src="https://www.youtube.com/embed/N6e5gI2Mjbc?rel=0"
+                                    title="Why buy vehicles from TR Group"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    referrerPolicy="strict-origin-when-cross-origin"
+                                    allowFullScreen
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             {/* stats */}
