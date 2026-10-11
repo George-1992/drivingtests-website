@@ -1,5 +1,6 @@
 "use client";
 
+import { XIcon } from "lucide-react";
 import { useEffect } from "react";
 
 export default function Popup({
@@ -44,9 +45,9 @@ export default function Popup({
                     type="button"
                     aria-label="Close popup"
                     onClick={onClose}
-                    className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-xl text-slate-500 transition hover:bg-slate-100 hover:text-slate-700"
+                    className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 text-xl text-slate-500 transition hover:bg-slate-100 hover:text-slate-700"
                 >
-                    ×
+                   <XIcon className="h-4 w-4" />
                 </button>
 
                 {title && (

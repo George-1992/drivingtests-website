@@ -81,10 +81,10 @@ export default async function PageWrapper({ params, searchParams, pageData, chil
                         {
                             title: 'auth',
                             component: (
-                                <div className="w-44 flex gap-2 rounded-xl border border-gray-300 items-center justify-center p-1 shadow-sm">
+                                <div className="w-44 z-0 flex gap-2 rounded-xl border border-gray-300 items-center justify-center p-1 shadow-sm">
                                     <Link
                                         href="/auth/signin"
-                                        className="w-full py-2 px-3 text-xs font-semibold rounded-lg text-center text-slate-700 hover:scale-[103%] hover:bg-gray-200 transition-all duration-200"
+                                        className="w-full z-0 py-2 px-3 text-xs font-semibold rounded-lg text-center text-slate-700 hover:scale-[103%] hover:bg-gray-200 transition-all duration-200"
                                     >
                                         Sign In
                                     </Link>
@@ -92,7 +92,7 @@ export default async function PageWrapper({ params, searchParams, pageData, chil
 
                                     <Link
                                         href="/auth/signup"
-                                        className="w-full py-2 px-3 text-xs font-semibold rounded-lg text-center text-slate-700 hover:scale-[103%] hover:bg-gray-200 transition-all duration-200"
+                                        className="w-full z-0 py-2 px-3 text-xs font-semibold rounded-lg text-center text-slate-700 hover:scale-[103%] hover:bg-gray-200 transition-all duration-200"
                                     >
                                         Sign Up
                                     </Link>
@@ -218,8 +218,7 @@ export default async function PageWrapper({ params, searchParams, pageData, chil
                                             { name: 'About Us', href: '/about-us/' },
                                             { name: 'Contact Us', href: '/contact-us/' },
                                             { name: 'Privacy Policy', href: '/privacy-policy/' },
-                                            { name: 'Terms of Service', href: '/terms-of-service/' },
-                                            { name: 'Terms of Use', href: '/terms-of-use/' }
+                                            { name: 'Terms and Conditions', href: '/terms-and-conditions/' },
                                         ]
                                     },
 

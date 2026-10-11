@@ -269,7 +269,7 @@ export default function Template1(props) {
                     }}
                     submitLabel="Send access request"
                     successMessage="Thanks! We will email you the access details shortly."
-                    className="w-full rounded-xl border border-slate-200 bg-white p-0 shadow-none"
+                    className="w-full p-1.5 rounded-xl border border-slate-200 bg-white p-0 shadow-none"
                 />
             </Popup>
 
