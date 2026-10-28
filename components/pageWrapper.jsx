@@ -40,6 +40,40 @@ export default async function PageWrapper({ params, searchParams, pageData, chil
     // logger.log('_pageData ==> ', _pageData);
     // _pageData.content = (_pageData.content || '').replace('component.landing.home1', 'component.landing.home2');
 
+    return (
+        <html lang="en">
+            <head>
+                <meta charSet="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <title>
+                    Dttraining.co.nz is under construction. Please check back later for updates and new content.
+                </title>
+            </head>
+            <body>
+
+                <div className="w-full h-screen flex flex-col items-center justify-center bg-gray-100">
+                    <Image
+                        src="/images/logo/icon.png"
+                        alt="Under Construction"
+                        width={80}
+                        height={80}
+                        className="mb-6"
+                    />
+                    <h1 className="text-3xl font-bold text-gray-800 mb-4">
+                       Under Construction
+                    </h1>
+                    <p className="text-lg text-gray-600 mb-8">
+                        Please check back later for updates and new content.
+                    </p>
+                    <Link href="https://www.drivingtests.co.nz/" className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">
+                        Go to Live Site
+                    </Link>
+                </div>
+
+            </body>
+        </html>
+    )
+
 
     return (
         <html lang="en">
